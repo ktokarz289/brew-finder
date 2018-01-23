@@ -6,7 +6,7 @@ var brewery = {};
 
 function getBrewery (breweryName, app) {
     answer = "I couldn't find that brewery";
-
+    console.log("The api key is: " + config.breweryApiKey);
     client.get(config.breweryBaseUrl + "search?key=" + config.breweryApiKey + "&type=brewery&q=" + breweryName,
     function(data, response) {
         client.get(config.breweryBaseUrl + "brewery/" + data.data[0].id + "/beers?key=" + config.breweryApiKey, function(beers, response) {

@@ -1,9 +1,9 @@
 'use strict';
-const App = require('actions-on-google');
 const functions = require("firebase-functions");
+const DialogflowApp  = require('actions-on-google').DialogflowApp;
 
 exports.brewFinder = functions.https.onRequest((req, res) => {
-  const app = new App({request: req, response: res});
+  const app = new DialogflowApp({request: req, response: res});
   var brewery = require("./controllers/brewery");
   var instructions = require("./controllers/instructions");
 
@@ -19,6 +19,7 @@ exports.brewFinder = functions.https.onRequest((req, res) => {
 
   function getBreweryBeer(app) {
     let userBrewery = app.getArgument("brewery");
+    console.log("The user brewery is: " + userBrewery);
     brewery.getBrewery(userBrewery, app);
   }
 
